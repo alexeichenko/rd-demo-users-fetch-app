@@ -1,0 +1,202 @@
+@use 'variables' as *;
+@use 'functions' as *;
+// ____________________________
+// Selector With Few Values
+@mixin selectorWithFewValues($selector, $properties...) {
+  #{$selector}: $properties;
+};
+// ____________________________
+// Transition
+@mixin transition($selector: transition, $propertie: all, $time: thin, $timing-function: ease, $delay-time: null) {
+  // Propertie
+  @if ($propertie != all) {
+    $propertie: $propertie;
+  };
+  // Timing
+  @if ($time == thin) {
+    $time: 150ms;
+  } @else if ($time == e-light) {
+    $time: 250ms;
+  } @else if ($time == light) {
+    $time: 350ms;
+  } @else if ($time == normal) {
+    $time: 450ms;
+  } @else if ($time == medium) {
+    $time: 550ms;
+  } @else if ($time == s-bold) {
+    $time: 650ms;
+  } @else if ($time == bold) {
+    $time: 750ms;
+  } @else if ($time == e-bold) {
+    $time: 850ms;
+  } @else if ($time == black) {
+    $time: 950ms;
+  } @else {
+    $time: $time;
+  };
+  // Timing-Functions
+  @if ($timing-function == ease) {
+    $timing-function: ease;
+  }
+  @else if ($timing-function == in-sine) {
+    $timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+  }
+  @else if ($timing-function == out-sine) {
+    $timing-function: cubic-bezier(0.61, 1, 0.88, 1);
+  }
+  @else if ($timing-function == in-out-sine) {
+    $timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+  }
+  @else if ($timing-function == in-quad) {
+    $timing-function: cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  @else if ($timing-function == out-quad) {
+    $timing-function: cubic-bezier(0.5, 1, 0.89, 1);
+  }
+  @else if ($timing-function == in-out-quad) {
+    $timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  @else if ($timing-function == in-cubic) {
+    $timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+  }
+  @else if ($timing-function == out-cubic) {
+    $timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  @else if ($timing-function == in-out-cubic) {
+    $timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  @else if ($timing-function == in-quart) {
+    $timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+  }
+  @else if ($timing-function == out-quart) {
+    $timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  @else if ($timing-function == in-out-quart) {
+    $timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  @else if ($timing-function == in-quint) {
+    $timing-function: cubic-bezier(0.64, 0, 0.78, 0);
+  }
+  @else if ($timing-function == out-quint) {
+    $timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @else if ($timing-function == in-out-quint) {
+    $timing-function: cubic-bezier(0.83, 0, 0.17, 1);
+  }
+  @else if ($timing-function == in-expo) {
+    $timing-function: cubic-bezier(0.7, 0, 0.84, 0);
+  }
+  @else if ($timing-function == out-expo) {
+    $timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @else if ($timing-function == in-out-expo) {
+    $timing-function: cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  @else if ($timing-function == in-circ) {
+    $timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+  }
+  @else if ($timing-function == out-circ) {
+    $timing-function: cubic-bezier(0, 0.55, 0.45, 1);
+  }
+  @else if ($timing-function == in-out-circ) {
+    $timing-function: cubic-bezier(0.85, 0, 0.15, 1);
+  }
+  @else if ($timing-function == in-back) {
+    $timing-function: cubic-bezier(0.36, 0, 0.66, -0.56);
+  }
+  @else if ($timing-function == out-back) {
+    $timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @else if ($timing-function == in-out-back) {
+    $timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  } @else {
+    $timing-function: $timing-function;
+  };
+
+  // Delay-timing
+  @if ($delay-time == thin) {
+    $delay-time: 100ms;
+  } @else if ($delay-time == e-light) {
+    $delay-time: 200ms;
+  } @else if ($delay-time == light) {
+    $delay-time: 300ms;
+  } @else if ($delay-time == normal) {
+    $delay-time: 400ms;
+  } @else if ($delay-time == medium) {
+    $delay-time: 500ms;
+  } @else if ($delay-time == s-bold) {
+    $delay-time: 600ms;
+  } @else if ($delay-time == bold) {
+    $delay-time: 700ms;
+  } @else if ($delay-time == e-bold) {
+    $delay-time: 800ms;
+  } @else if ($delay-time == black) {
+    $delay-time: 900ms;
+  } @else {
+    $delay-time: $delay-time;
+  };
+
+  @include selectorWithFewValues($selector, $propertie $time $timing-function $delay-time);
+};
+// ____________________________
+// Clamp
+@mixin clamp($propertie, $ratio: 1.618033988749, $px) {
+  $min: calc($px / $ratio);
+  $curr: calc($px / 12);
+  #{$propertie}: clamp(rem($min), #{$curr}vw, rem($px));
+};
+// ____________________________
+// Font styling
+@mixin font($font-family: null,
+$font-size: clamp, $cl-propertie: font-size, $cl-ratio: null, $cl-px: 18,
+$font-weight: 400,
+$line-height: null,
+$letter-spacing: null,
+$text-align: null,
+$text-transform: null,
+$color: null
+) {
+  // Font Family
+  @if ($font-family == sans) {
+    font-family: var(--sans);
+  } @else if ($font-family == serif) {
+    font-family: var(--serif);
+  } @else if($font-family == mono) {
+    font-family: var(--mono);
+  } @else if(font-family != null) {
+    font-family: $font-family;
+  };
+  // Font Size
+  @if ($font-size == clamp) {
+    @if ($cl-ratio != null) {
+      @include clamp($propertie: $cl-propertie, $ratio: $cl-ratio, $px: $cl-px);
+    } @else if ($cl-ratio == null) {
+      @include clamp($propertie: $cl-propertie, $px: $cl-px);
+    };
+  } @else {
+    font-size: rem($font-size);
+  };
+  // Font Weight
+  font-weight: $font-weight;
+  // Line Height
+  @if (line-height != null) {
+    line-height: $line-height;
+  }
+  // Letter Spacing
+  @if (letter-spacing != null) {
+    letter-spacing: $letter-spacing;
+  };
+  // Text Align
+  @if (text-align != null) {
+    text-align: $text-align;
+  };
+  //  Text Transform
+  @if (text-transform != null) {
+    text-transform: $text-transform;
+  };
+  // Color
+  @if (color != null) {
+    color: $color;
+  };
+};
+// ____________________________

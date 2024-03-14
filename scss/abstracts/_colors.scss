@@ -1,0 +1,17 @@
+// colors
+$colors: (
+  // color and shades same time
+  --global: (
+    // shade - value
+    -white: #fff,
+    // shade - value
+    -black: #000,
+    // shade - value
+    -grey: #aaaaaa,
+  ),
+  // shades
+  --primary: (
+    -100: #e1e5f0,
+    -200: #82ade0,
+  ),
+);
