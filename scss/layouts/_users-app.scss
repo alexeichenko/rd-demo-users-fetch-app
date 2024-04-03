@@ -1,0 +1,136 @@
+@use '../abstracts';
+@use '../base/media-queries' as breakpoint;
+@use '../components/user' as *;
+
+body {
+  background-color: var(--primary-100);
+}
+
+
+.users-app {
+  margin: auto;
+  width: 70%;
+  &__container {
+    margin-top: 7%;
+    background-color: var(--global-white);
+    border-radius: 10px;
+    box-shadow: 0px 1px 40px -5px #00000066;
+    display: flex;
+  }
+
+  &__column {
+    padding: 5%;
+    flex: 1;
+    max-height: 80svh;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: x mandatory;
+    & > * {
+      scroll-snap-align: start;
+    }
+    @include breakpoint.mq(mobile) {
+      padding: 2%;
+    }
+  }
+}
+
+.all-users {
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: abstracts.function_rem(24);
+  @include breakpoint.mq(mobile) {
+    gap: abstracts.function_rem(14);
+  }
+
+  &__heading {
+    @include abstracts.mixin_font(
+      $font-family: var(--sans),
+      $cl-ratio: 1.2,
+      $cl-px: 28,
+      $font-weight: 600,
+      $line-height: 1.5,
+      $color: var(--global-black),
+    );
+  }
+
+  &__list {
+  }
+
+  &__item {
+    @media (hover: hover) {
+        &:hover {
+          cursor: pointer;
+        }
+    };
+    padding: 5% 0;
+    &:not(:last-child){
+      border-bottom: 1px solid #dcdcdc;
+    };
+  }
+
+  &__user {
+  }
+}
+
+.single-user {
+  display: none;
+  // display: flex;
+  flex-flow: column nowrap;
+  gap: abstracts.function_rem(28);
+
+  &__loading {
+    display: none;
+    @include abstracts.mixin_font(
+      $font-family: var(--sans),
+      $cl-ratio: 1.2,
+      $cl-px: 14,
+      $font-weight: 400,
+      $line-height: 1.5,
+      $color: var(--global-grey),
+      $text-transform: capitalize,
+    );
+    height: 50svh;
+    margin: 0 auto;
+  }
+
+  &__profile {
+  }
+
+  &__body {
+    display: flex;
+    flex-flow: column wrap;
+    gap: abstracts.function_rem(20);
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    @include breakpoint.mq(mobile) {
+      flex-flow: column wrap;
+    }
+  }
+
+  &__item {
+
+    flex: 0 1 50%;
+    @include breakpoint.mq(tablet) {
+      flex: 0 1 auto;
+    }
+
+    @include abstracts.mixin_font(
+      $font-family: var(--sans),
+      $cl-ratio: 1.2,
+      $cl-px: 14,
+      $font-weight: 400,
+      $line-height: 1.5,
+      $color: var(--global-grey),
+      $text-transform: capitalize,
+    );
+
+    &_link {
+      color: var(--primary-200);
+    }
+  }
+};

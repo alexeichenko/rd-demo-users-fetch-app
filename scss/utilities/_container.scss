@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as variables;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+}
+
+.wrapper > main {
+  flex-grow: 1;
+}
+
+.flow > * + * {
+  margin-top: 1em;
+}
+
+[class*="container"] {
+  width: min(variables.$pc, 100% - 4rem);
+  margin-inline: auto;
+}
